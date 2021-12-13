@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="TextViw_marginTop">16dp</dimen>
+    <dimen name="TextView_marginEnd">16dp</dimen>
+    <dimen name="CardView_height">100dp</dimen>
+    <dimen name="CardView_layout_margin">10dp</dimen>
+    <dimen name="cardCornerRadius">20dp</dimen>
+    <dimen name="cardElivation">15dp</dimen>
+    <dimen name="Linerlayout_marginStart">60dp</dimen>
+    <dimen name="LinerLayout_marginTop">40dp</dimen>
+    <dimen name="LinerLayout_marginEnd">60dp</dimen>
+    <dimen name="layout_marginBottom">40dp</dimen>
+    <dimen name="bottom_menu_height">70dp</dimen>
+</resources>

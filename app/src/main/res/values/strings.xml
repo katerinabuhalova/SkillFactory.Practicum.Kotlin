@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">MyKinopoisk</string>
-    <string name="button">Меню</string>
-    <string name="button2">Избранное</string>
-    <string name="button3">Подборки</string>
-    <string name="button4">Настройки</string>
-    <string name="button5">Посмотреть позже</string>
-    <string name="disclaimer">Картинки взяты с pexels.com</string>
+    <string name="settings">Настройки</string>
+    <string name="page_title">Картинки взяты с https://www.movieposters.com/</string>
+    <string name="search_it">Search it!</string>
+    <string name="menu_favorites_title">Избранное</string>
+    <string name="menu_watch_later_title">Посмотреть позже</string>
+    <string name="menu_selections_title">Подборки</string>
 </resources>
