@@ -1,5 +1,6 @@
 package com.awesomecompany.mykinopoisk
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.widget.Toast
@@ -67,23 +68,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeRecycler() {
         main_recycler.apply {
-            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
-            //оставим его пока пустым, он нам понадобится во второй части задания
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
-                        TODO("Not yet implemented")
+                        val bundle = Bundle()
+                        bundle.putParcelable("film", film)
+                        val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivity(intent)
                     }
                 })
-            //Присваиваем адаптер
             adapter = filmsAdapter
             //Присвои layoutmanager
             layoutManager = LinearLayoutManager(this@MainActivity)
-            //Применяем декоратор для отступов
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
-//Кладем нашу БД в RV
         filmsAdapter.addItems(filmsDataBase)
     }
 }
