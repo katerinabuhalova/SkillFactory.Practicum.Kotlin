@@ -47,7 +47,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/details_fab"
+        android:id="@+id/details_fab_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -70,6 +70,19 @@
             tools:text="@tools:sample/lorem/random" />
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_fab_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fragmentDetails_floatingactionbutton"
+        android:backgroundTint="@color/teal_700"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="left|bottom"
+        app:srcCompat="@drawable/ic_favorits"
+        app:tint="@android:color/white"
+        tools:ignore="VectorDrawableCompat" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
