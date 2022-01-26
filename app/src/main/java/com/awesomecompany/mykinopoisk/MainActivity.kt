@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragment_placeholder, HomeFragment())
             .addToBackStack(null)
             .commit()
+
+
     }
 
     private fun appBarClickListener() {

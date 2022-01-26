@@ -6,18 +6,10 @@
     <dimen name="CardView_layout_margin">10dp</dimen>
     <dimen name="cardCornerRadius">20dp</dimen>
     <dimen name="cardElivation">15dp</dimen>
-    <dimen name="Linerlayout_marginStart">60dp</dimen>
-    <dimen name="LinerLayout_marginTop">40dp</dimen>
-    <dimen name="LinerLayout_marginEnd">60dp</dimen>
-    <dimen name="layout_marginBottom">40dp</dimen>
-    <dimen name="bottom_menu_height">70dp</dimen>
-    <dimen name="widht_imageView_gridlayout">150dp</dimen>
-    <dimen name="height_imageView_gridLayout">200dp</dimen>
     <dimen name="width_imageView_filmItem">160dp</dimen>
     <dimen name="filmItem_textView_padding">8dp</dimen>
-    <dimen name="filmItem_cardView_height">150dp</dimen>
-    <dimen name="filmItem_elevation">1dp</dimen>
-    <dimen name="filmItem_cardCornerRadius">10dp</dimen>
     <dimen name="fragmentDetails_floatingactionbutton">16dp</dimen>
+    <dimen name="fragmentHome_margin_searchView">8dp</dimen>
+    <dimen name="fragmentHome_recyclerView_margin">16dp</dimen>
 
 </resources>

@@ -1,13 +1,10 @@
 <resources>
     <string name="app_name">MyKinopoisk</string>
     <string name="settings">Настройки</string>
-    <string name="page_title">Картинки взяты с https://www.movieposters.com/</string>
     <string name="search_it">Search it!</string>
     <string name="menu_favorites_title">Избранное</string>
     <string name="menu_watch_later_title">Посмотреть позже</string>
     <string name="menu_selections_title">Подборки</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="AlertDialogTitle">Вы хотите выйти?</string>
     <string name="AlertDialog_positiveButton">Да</string>
     <string name="AlertDialog_negativeButton">Нет</string>
