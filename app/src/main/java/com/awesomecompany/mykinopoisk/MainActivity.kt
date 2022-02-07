@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragment_placeholder, HomeFragment())
             .addToBackStack(null)
             .commit()
+
+
     }
 
     private fun appBarClickListener() {
@@ -41,7 +44,11 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
                 R.id.watch_later -> {
@@ -72,15 +79,15 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         AlertDialog.Builder(this)
-            .setTitle("Вы хотите выйти?")
-            .setPositiveButton("Да") { _, _ ->
+            .setTitle(getString(R.string.AlertDialogTitle))
+            .setPositiveButton(getString(R.string.AlertDialog_positiveButton)) { _, _ ->
                 finish()
             }
-            .setNegativeButton("Нет") { _, _ ->
+            .setNegativeButton(getString(R.string.AlertDialog_negativeButton)) { _, _ ->
 
             }
-            .setNeutralButton("Не знаю") { _, _ ->
-                Toast.makeText(this, "Решайся", Toast.LENGTH_SHORT).show()
+            .setNeutralButton(getString(R.string.AlertDialog_neutralButton)) { _, _ ->
+                Toast.makeText(this, getString(R.string.AlertDialog_toast), Toast.LENGTH_SHORT).show()
             }
             .show()
     }

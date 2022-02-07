@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/width_imageView_filmItem"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +23,7 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="@dimen/filmItem_textView_padding"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintLeft_toRightOf="@+id/poster"
@@ -35,7 +35,7 @@
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="8dp"
+            android:padding="@dimen/filmItem_textView_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/poster"
             app:layout_constraintRight_toRightOf="parent"

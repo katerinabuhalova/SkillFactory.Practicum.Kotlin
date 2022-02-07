@@ -1,19 +1,13 @@
 package com.awesomecompany.mykinopoisk
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.data.Film
-import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_favorites.*
 
-
-class HomeFragment : Fragment() {
-
+class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
 
@@ -28,44 +22,12 @@ class HomeFragment : Fragment() {
         Film("Star Wars", R.drawable.picter3, "Film8")
     )
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeRecycler()
+        //Получаем список при транзакции фрагмента
+        val favoritesList: List<Film> = emptyList()
 
-        search_view.setOnClickListener {
-            search_view.isIconified = false
-        }
-
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isBlank()) {
-                    filmsAdapter.addItems(filmsDataBase)
-                    return true
-                }
-                val result = filmsDataBase.filter {
-                    it.title.toLowerCase(Locale.getDefault())
-                        .contains(newText.toLowerCase(Locale.getDefault()))
-                }
-                filmsAdapter.addItems(result)
-                return true
-            }
-        })
-    }
-
-    private fun initializeRecycler() {
-        main_recycler.apply {
+        favorites_recycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
@@ -78,5 +40,6 @@ class HomeFragment : Fragment() {
             addItemDecoration(decorator)
         }
         filmsAdapter.addItems(filmsDataBase)
+
     }
 }
