@@ -9,7 +9,7 @@
     <dimen name="width_imageView_filmItem">160dp</dimen>
     <dimen name="filmItem_textView_padding">8dp</dimen>
     <dimen name="fragmentDetails_floatingactionbutton">16dp</dimen>
-    <dimen name="fragmentHome_margin_searchView">8dp</dimen>
+    <dimen name="mergeHomeScreenContext_margin">8dp</dimen>
     <dimen name="fragmentHome_recyclerView_margin">16dp</dimen>
     <dimen name="fragmentDetails_floatingActionButton_margin">16dp</dimen>
 

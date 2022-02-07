@@ -1,14 +1,20 @@
 package com.awesomecompany.mykinopoisk
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Scene
+import androidx.transition.Slide
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.merge_home_screen_content.*
 import java.util.*
 
 
@@ -38,6 +44,22 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val scene = Scene.getSceneForLayout(
+            home_fragment_root,
+            R.layout.merge_home_screen_content,
+            requireContext()
+        )
+
+        val searchSlide = Slide(Gravity.TOP).addTarget(R.id.search_view)
+        val recyclerSlide = Slide(Gravity.BOTTOM).addTarget(R.id.main_recycler)
+        val customTransition = TransitionSet().apply {
+            duration = 500
+            addTransition(recyclerSlide)
+            addTransition(searchSlide)
+        }
+        TransitionManager.go(scene, customTransition)
+
         initializeRecycler()
 
         search_view.setOnClickListener {
