@@ -15,6 +15,7 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
+    private val recyclerViewPadding = 8
 
     val filmsDataBase = listOf(
         Film("Joker", R.drawable.joker, "Film1"),
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isEmpty()) {
+                if (newText.isBlank()) {
                     filmsAdapter.addItems(filmsDataBase)
                     return true
                 }
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
                 })
             adapter = filmsAdapter
             layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(8)
+            val decorator = TopSpacingItemDecoration(recyclerViewPadding)
             addItemDecoration(decorator)
         }
         filmsAdapter.addItems(filmsDataBase)

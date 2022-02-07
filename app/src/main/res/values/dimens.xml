@@ -11,5 +11,6 @@
     <dimen name="fragmentDetails_floatingactionbutton">16dp</dimen>
     <dimen name="fragmentHome_margin_searchView">8dp</dimen>
     <dimen name="fragmentHome_recyclerView_margin">16dp</dimen>
+    <dimen name="fragmentDetails_floatingActionButton_margin">16dp</dimen>
 
 </resources>

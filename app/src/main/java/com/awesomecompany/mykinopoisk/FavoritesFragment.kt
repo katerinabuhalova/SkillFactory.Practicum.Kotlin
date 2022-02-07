@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
+    private val recyclerViewPadding = 8
 
     val filmsDataBase = listOf(
         Film("Joker", R.drawable.joker, "Film1"),
@@ -26,19 +27,18 @@ class FavoritesFragment : Fragment() {
         //Получаем список при транзакции фрагмента
         val favoritesList: List<Film> = emptyList()
 
-        favorites_recycler
-            .apply {
-                filmsAdapter =
-                    FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                        override fun click(film: Film) {
-                            (requireActivity() as MainActivity).launchDetailsFragment(film)
-                        }
-                    })
-                adapter = filmsAdapter
-                layoutManager = LinearLayoutManager(requireContext())
-                val decorator = TopSpacingItemDecoration(8)
-                addItemDecoration(decorator)
-            }
+        favorites_recycler.apply {
+            filmsAdapter =
+                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+                    override fun click(film: Film) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(film)
+                    }
+                })
+            adapter = filmsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val decorator = TopSpacingItemDecoration(recyclerViewPadding)
+            addItemDecoration(decorator)
+        }
         filmsAdapter.addItems(filmsDataBase)
 
     }
