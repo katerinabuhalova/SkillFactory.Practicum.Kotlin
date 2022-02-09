@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val tag = "home"
         val fragment = checkFragmentExistence(tag)
-        changeFragment( fragment?: HomeFragment(), tag)
+        changeFragment(fragment ?: HomeFragment(), tag)
     }
 
     private fun appBarClickListener() {
@@ -36,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkFragmentExistence(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
+    private fun checkFragmentExistence(tag: String): Fragment? =
+        supportFragmentManager.findFragmentByTag(tag)
 
     private fun changeFragment(fragment: Fragment, tag: String) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_placeholder, fragment, tag)
-            .addToBackStack(null)
             .commit()
     }
 
@@ -53,25 +53,25 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: HomeFragment(), tag)
+                    changeFragment(fragment ?: HomeFragment(), tag)
                     true
                 }
                 R.id.favorites -> {
                     val tag = "favorites"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: FavoritesFragment(), tag)
+                    changeFragment(fragment ?: FavoritesFragment(), tag)
                     true
                 }
                 R.id.watch_later -> {
                     val tag = "watch_later"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: WatchLaterFragment(), tag)
+                    changeFragment(fragment ?: WatchLaterFragment(), tag)
                     true
                 }
                 R.id.selections -> {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: SelectionsFragment(), tag)
+                    changeFragment(fragment ?: SelectionsFragment(), tag)
                     true
                 }
                 else -> false
@@ -92,14 +92,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        var count = supportFragmentManager.backStackEntryCount
+        if (count > 0) {
+            super.onBackPressed()
+            return
+        }
+
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.AlertDialogTitle))
             .setPositiveButton(getString(R.string.AlertDialog_positiveButton)) { _, _ ->
-                finish()
+                super.onBackPressed()
             }
             .setNegativeButton(getString(R.string.AlertDialog_negativeButton)) { _, _ ->
-
             }
             .setNeutralButton(getString(R.string.AlertDialog_neutralButton)) { _, _ ->
                 Toast.makeText(this, getString(R.string.AlertDialog_toast), Toast.LENGTH_SHORT)
