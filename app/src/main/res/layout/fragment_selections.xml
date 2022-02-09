@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_collections_root"
+    android:id="@+id/selections_root"
     tools:visibility="visible"
+    android:visibility="invisible"
     android:background="@drawable/collections">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

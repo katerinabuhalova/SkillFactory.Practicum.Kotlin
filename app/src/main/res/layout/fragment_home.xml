@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home_fragment_root"
     tools:visibility="visible"
+    android:visibility="invisible"
     android:background="@drawable/main_screen"
     tools:context=".HomeFragment">
 
