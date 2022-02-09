@@ -12,5 +12,7 @@
     <dimen name="mergeHomeScreenContext_margin">8dp</dimen>
     <dimen name="fragmentHome_recyclerView_margin">16dp</dimen>
     <dimen name="fragmentDetails_floatingActionButton_margin">16dp</dimen>
+    <dimen name="splashScreen_widht">300dp</dimen>
+    <dimen name="splashScreen_height">500dp</dimen>
 
 </resources>
