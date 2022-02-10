@@ -9,11 +9,11 @@ android {
 
     defaultConfig {
         applicationId "com.awesomecompany.mykinopoisk"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
