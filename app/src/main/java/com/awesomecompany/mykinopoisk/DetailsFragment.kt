@@ -14,6 +14,10 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class DetailsFragment : Fragment() {
 
+    companion object {
+        private const val FILM_ARGUMENT_ID = "film"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,7 +31,7 @@ class DetailsFragment : Fragment() {
 
         AnimationHelper.performFragmentCircularRevealAnimation(details_root, requireActivity(), 1)
 
-        val film = arguments?.get("film") as Film
+        val film = arguments?.get(FILM_ARGUMENT_ID) as Film
         details_toolbar.title = film.title
         details_poster.setImageResource(film.poster)
         details_description.text = film.description
