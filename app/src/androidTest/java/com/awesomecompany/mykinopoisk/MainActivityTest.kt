@@ -1,12 +1,7 @@
 package com.awesomecompany.mykinopoisk
 
-import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.test.espresso.Espresso.*
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -15,9 +10,6 @@ import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.EnumSet.allOf
-import java.util.regex.Matcher
-import android.widget.SearchView as SearchView1
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
