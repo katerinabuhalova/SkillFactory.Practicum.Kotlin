@@ -1,15 +1,22 @@
 package com.awesomecompany.mykinopoisk
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class DetailsFragment : Fragment() {
+
+    companion object {
+        private const val FILM_ARGUMENT_ID = "film"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,9 +25,13 @@ class DetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val film = arguments?.get("film") as Film
+
+        AnimationHelper.performFragmentCircularRevealAnimation(details_root, requireActivity(), 1)
+
+        val film = arguments?.get(FILM_ARGUMENT_ID) as Film
         details_toolbar.title = film.title
         details_poster.setImageResource(film.poster)
         details_description.text = film.description

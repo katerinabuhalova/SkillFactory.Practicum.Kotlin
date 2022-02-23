@@ -1,9 +1,12 @@
 package com.awesomecompany.mykinopoisk
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -18,13 +21,9 @@ class MainActivity : AppCompatActivity() {
         appBarClickListener()
         bottomListener()
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_placeholder, HomeFragment())
-            .addToBackStack(null)
-            .commit()
-
-
+        val tag = "home"
+        val fragment = checkFragmentExistence(tag)
+        changeFragment(fragment ?: HomeFragment(), tag)
     }
 
     private fun appBarClickListener() {
@@ -39,24 +38,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkFragmentExistence(tag: String): Fragment? =
+        supportFragmentManager.findFragmentByTag(tag)
+
+    private fun changeFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_placeholder, fragment, tag)
+            .commit()
+    }
+
     private fun bottomListener() {
         bottom_navigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
+                R.id.home -> {
+                    val tag = "home"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: HomeFragment(), tag)
+                    true
+                }
                 R.id.favorites -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fragment_placeholder, FavoritesFragment())
-                        .addToBackStack(null)
-                        .commit()
+                    val tag = "favorites"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: FavoritesFragment(), tag)
                     true
                 }
                 R.id.watch_later -> {
-                    Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+                    val tag = "watch_later"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: WatchLaterFragment(), tag)
                     true
                 }
                 R.id.selections -> {
-                    Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+                    val tag = "selections"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: SelectionsFragment(), tag)
                     true
                 }
                 else -> false
@@ -77,17 +94,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        var count = supportFragmentManager.backStackEntryCount
+        if (count > 0) {
+            super.onBackPressed()
+            return
+        }
+
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.AlertDialogTitle))
             .setPositiveButton(getString(R.string.AlertDialog_positiveButton)) { _, _ ->
-                finish()
+                super.onBackPressed()
             }
             .setNegativeButton(getString(R.string.AlertDialog_negativeButton)) { _, _ ->
-
             }
             .setNeutralButton(getString(R.string.AlertDialog_neutralButton)) { _, _ ->
-                Toast.makeText(this, getString(R.string.AlertDialog_toast), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.AlertDialog_toast), Toast.LENGTH_SHORT)
+                    .show()
             }
             .show()
     }

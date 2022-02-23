@@ -1,11 +1,16 @@
 package com.awesomecompany.mykinopoisk
 
+import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.fragment_favorites.*
+import kotlinx.android.synthetic.main.fragment_watch_later.*
 
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
@@ -14,17 +19,22 @@ class FavoritesFragment : Fragment() {
     val filmsDataBase = listOf(
         Film("Joker", R.drawable.joker, "Film1"),
         Film("Titanic", R.drawable.titanic, "Film2"),
-        Film("Christmas Story", R.drawable.christmasstory, "Film3"),
-        Film("Car", R.drawable.car, "Film4"),
-        Film("Monsters", R.drawable.monstersinc24_500x749, "Film5"),
-        Film("Nemo", R.drawable.nemo, "Film6"),
-        Film("Ratatouille", R.drawable.ratatouille, "Film7"),
-        Film("Star Wars", R.drawable.picter3, "Film8")
+        Film("Christmas Story", R.drawable.christmasstory, "Film3")
     )
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_favorites, container, false)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Получаем список при транзакции фрагмента
+
+        AnimationHelper.performFragmentCircularRevealAnimation(favorites_root, requireActivity(), 1)
+
         val favoritesList: List<Film> = emptyList()
 
         favorites_recycler.apply {
@@ -40,6 +50,5 @@ class FavoritesFragment : Fragment() {
             addItemDecoration(decorator)
         }
         filmsAdapter.addItems(filmsDataBase)
-
     }
 }
