@@ -20,8 +20,8 @@ class HomeFragment : Fragment() {
     private val recyclerViewPadding = 8
 
     val filmsDataBase = listOf(
-        Film("Joker", R.drawable.joker, "Film1"),
-        Film("Titanic", R.drawable.titanic, "Film2"),
+        Film("Joker", R.drawable.joker, "Film1",5.8f),
+        Film("Titanic", R.drawable.titanic, "Film2",7.9f),
         Film("Christmas Story", R.drawable.christmasstory, "Film3"),
         Film("Car", R.drawable.car, "Film4"),
         Film("Monsters", R.drawable.monstersinc24_500x749, "Film5"),
