@@ -7,16 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_selections.*
+import com.awesomecompany.mykinopoisk.databinding.FragmentSelectionsBinding
 
 
 class SelectionsFragment : Fragment() {
+    private lateinit var binding: FragmentSelectionsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_selections, container, false)
+        binding = FragmentSelectionsBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
@@ -25,7 +27,7 @@ class SelectionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         AnimationHelper.performFragmentCircularRevealAnimation(
-            selections_root,
+            binding.selectionsRoot,
             requireActivity(),
             1
         )

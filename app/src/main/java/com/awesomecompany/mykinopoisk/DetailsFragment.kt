@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.data.Film
-import kotlinx.android.synthetic.main.fragment_details.*
-import kotlinx.android.synthetic.main.fragment_favorites.*
+import com.awesomecompany.mykinopoisk.databinding.FragmentDetailsBinding
+
 
 class DetailsFragment : Fragment() {
+
+    private lateinit var binding: FragmentDetailsBinding
 
     companion object {
         private const val FILM_ARGUMENT_ID = "film"
@@ -22,36 +24,37 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        AnimationHelper.performFragmentCircularRevealAnimation(details_root, requireActivity(), 1)
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.detailsRoot, requireActivity(), 1)
 
         val film = arguments?.get(FILM_ARGUMENT_ID) as Film
-        details_toolbar.title = film.title
-        details_poster.setImageResource(film.poster)
-        details_description.text = film.description
+        binding.detailsToolbar.title = film.title
+        binding.detailsPoster.setImageResource(film.poster)
+        binding.detailsDescription.text = film.description
 
-        details_fab_favorites.setImageResource(
+        binding.detailsFabFavorites.setImageResource(
             if (film.isInFavorites) R.drawable.ic_favorits
             else R.drawable.ic_favorits_two
         )
 
-        details_fab_favorites.setOnClickListener {
+        binding.detailsFabFavorites.setOnClickListener {
             if (!film.isInFavorites) {
-                details_fab_favorites.setImageResource(R.drawable.ic_favorits)
+                binding.detailsFabFavorites.setImageResource(R.drawable.ic_favorits)
                 film.isInFavorites = true
             } else {
-                details_fab_favorites.setImageResource(R.drawable.ic_favorits_two)
+                binding.detailsFabFavorites.setImageResource(R.drawable.ic_favorits_two)
                 film.isInFavorites = false
             }
         }
 
-        details_fab_share.setOnClickListener {
+       binding.detailsFabShare.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(

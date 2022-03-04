@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.data.Film
+import com.awesomecompany.mykinopoisk.databinding.FragmentFavoritesBinding
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import kotlinx.android.synthetic.main.fragment_watch_later.*
 
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
+    private lateinit var binding: FragmentFavoritesBinding
 
     val filmsDataBase = listOf(
         Film("Joker", R.drawable.joker, "Film1"),
@@ -26,7 +28,8 @@ class FavoritesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -37,7 +40,7 @@ class FavoritesFragment : Fragment() {
 
         val favoritesList: List<Film> = emptyList()
 
-        favorites_recycler.apply {
+       binding.favoritesRecycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {

@@ -2,7 +2,6 @@ package com.awesomecompany.mykinopoisk
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.awesomecompany.mykinopoisk.data.Film
 import kotlinx.android.synthetic.main.film_item.view.*

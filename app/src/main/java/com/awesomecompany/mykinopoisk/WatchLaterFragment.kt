@@ -7,15 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_watch_later.*
+import com.awesomecompany.mykinopoisk.databinding.FragmentFavoritesBinding
+import com.awesomecompany.mykinopoisk.databinding.FragmentWatchLaterBinding
+
 
 class WatchLaterFragment : Fragment() {
+
+    private lateinit var binding: FragmentWatchLaterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_watch_later, container, false)
+        binding = FragmentWatchLaterBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
@@ -23,6 +28,10 @@ class WatchLaterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        AnimationHelper.performFragmentCircularRevealAnimation(watch_later_root, requireActivity(), 1)
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.watchLaterRoot,
+            requireActivity(),
+            1
+        )
     }
 }

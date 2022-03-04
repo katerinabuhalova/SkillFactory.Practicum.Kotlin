@@ -5,10 +5,12 @@ import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
-import kotlinx.android.synthetic.main.activity_splash_screen.*
+import com.awesomecompany.mykinopoisk.databinding.ActivitySplashScreenBinding
+
 
 class SplashScreenActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySplashScreenBinding
 
     companion object {
         private const val SPLASH_TIME_OUT = 3000L
@@ -16,8 +18,9 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
-        (music_note.drawable as Animatable).start()
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        (binding.musicNote.drawable as Animatable).start()
 
         Handler().postDelayed(
             {

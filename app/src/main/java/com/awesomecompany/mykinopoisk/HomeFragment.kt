@@ -10,18 +10,20 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.data.Film
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.awesomecompany.mykinopoisk.databinding.FragmentHomeBinding
 import java.util.*
 
 
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentHomeBinding
+
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
 
     val filmsDataBase = listOf(
-        Film("Joker", R.drawable.joker, "Film1",5.8f),
-        Film("Titanic", R.drawable.titanic, "Film2",7.9f),
+        Film("Joker", R.drawable.joker, "Film1", 5.8f),
+        Film("Titanic", R.drawable.titanic, "Film2", 7.9f),
         Film("Christmas Story", R.drawable.christmasstory, "Film3"),
         Film("Car", R.drawable.car, "Film4"),
         Film("Monsters", R.drawable.monstersinc24_500x749, "Film5"),
@@ -34,7 +36,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
@@ -44,13 +47,17 @@ class HomeFragment : Fragment() {
 
         initializeRecycler()
 
-        AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.homeFragmentRoot,
+            requireActivity(),
+            1
+        )
 
-        search_view.setOnClickListener {
-            search_view.isIconified = false
+        binding.searchView.setOnClickListener {
+            binding.searchView.isIconified = false
         }
 
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
@@ -71,7 +78,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initializeRecycler() {
-        main_recycler.apply {
+        binding.mainRecycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
