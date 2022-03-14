@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.utils
 
 import android.app.Activity
 import android.os.Build

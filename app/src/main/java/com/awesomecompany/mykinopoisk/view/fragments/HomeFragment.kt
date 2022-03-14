@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -8,27 +8,34 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.awesomecompany.mykinopoisk.data.Film
+import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
+import com.awesomecompany.mykinopoisk.view.MainActivity
+import com.awesomecompany.mykinopoisk.R
+import com.awesomecompany.mykinopoisk.view.rv_adapters.TopSpacingItemDecoration
+import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.utils.AnimationHelper
+import com.awesomecompany.mykinopoisk.viewmodel.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 
 
 class HomeFragment : Fragment() {
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
+    }
+
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
 
-    val filmsDataBase = listOf(
-        Film("Joker", R.drawable.joker, "Film1",5.8f),
-        Film("Titanic", R.drawable.titanic, "Film2",7.9f),
-        Film("Christmas Story", R.drawable.christmasstory, "Film3"),
-        Film("Car", R.drawable.car, "Film4"),
-        Film("Monsters", R.drawable.monstersinc24_500x749, "Film5"),
-        Film("Nemo", R.drawable.nemo, "Film6"),
-        Film("Ratatouille", R.drawable.ratatouille, "Film7"),
-        Film("Star Wars", R.drawable.picter3, "Film8")
-    )
+    private var filmsDataBase = listOf<Film>()
+        set(value) {
+            if (field == value) return
+            field = value
+            filmsAdapter.addItems(field)
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +49,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            home_fragment_root,
+            requireActivity(),
+            1
+        )
+
         initializeRecycler()
 
-        AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
+        viewModel.filmsListLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { filmsDataBase = it })
+
+
 
         search_view.setOnClickListener {
             search_view.isIconified = false

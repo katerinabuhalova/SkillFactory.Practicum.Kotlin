@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.awesomecompany.mykinopoisk.data.Film
+import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
+import com.awesomecompany.mykinopoisk.view.MainActivity
+import com.awesomecompany.mykinopoisk.R
+import com.awesomecompany.mykinopoisk.view.rv_adapters.TopSpacingItemDecoration
+import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.utils.AnimationHelper
 import kotlinx.android.synthetic.main.fragment_favorites.*
-import kotlinx.android.synthetic.main.fragment_watch_later.*
 
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter

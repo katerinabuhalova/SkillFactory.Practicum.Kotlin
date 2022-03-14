@@ -1,8 +1,8 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view.rv_viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.awesomecompany.mykinopoisk.data.Film
+import com.awesomecompany.mykinopoisk.domain.Film
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.film_item.view.*
 
