@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
+    private val startAnimationPosition = 1
 
     private var filmsDataBase = listOf<Film>()
         set(value) {
@@ -52,14 +53,14 @@ class HomeFragment : Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(
             home_fragment_root,
             requireActivity(),
-            1
+            startAnimationPosition
         )
 
         initializeRecycler()
 
         viewModel.filmsListLiveData.observe(
             viewLifecycleOwner,
-            androidx.lifecycle.Observer { filmsDataBase = it })
+            { filmsDataBase = it })
 
 
 
