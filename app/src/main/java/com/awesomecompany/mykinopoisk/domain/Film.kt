@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk.data
+package com.awesomecompany.mykinopoisk.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

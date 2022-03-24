@@ -1,15 +1,14 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.awesomecompany.mykinopoisk.data.Film
+import com.awesomecompany.mykinopoisk.R
+import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class MainActivity : AppCompatActivity() {

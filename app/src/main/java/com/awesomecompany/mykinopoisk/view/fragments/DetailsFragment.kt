@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view.fragments
 
 import android.content.Intent
 import android.os.Build
@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.awesomecompany.mykinopoisk.data.Film
+import com.awesomecompany.mykinopoisk.R
+import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.utils.AnimationHelper
 import kotlinx.android.synthetic.main.fragment_details.*
-import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class DetailsFragment : Fragment() {
 

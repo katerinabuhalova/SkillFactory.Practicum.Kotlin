@@ -1,9 +1,10 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view.customviews
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import com.awesomecompany.mykinopoisk.R
 
 class RatingDonutView @JvmOverloads constructor(
     context: Context,

@@ -1,11 +1,11 @@
-package com.awesomecompany.mykinopoisk
+package com.awesomecompany.mykinopoisk.view
 
 import android.content.Intent
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
+import com.awesomecompany.mykinopoisk.R
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashScreenActivity : AppCompatActivity() {
