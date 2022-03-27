@@ -11,7 +11,8 @@ class HomeFragmentViewModel : ViewModel() {
     private var interactor: Interactor = App.instance.interactor
 
     init {
-        val films = interactor.getFilmsDB()
+
+        val films = interactor.getFilmsLocalDB()
         filmsListLiveData.postValue(films)
     }
 }
