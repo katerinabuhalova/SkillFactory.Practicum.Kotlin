@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.R
+import com.awesomecompany.mykinopoisk.data.ApiConstants
 import com.awesomecompany.mykinopoisk.domain.Film
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_details.*
+
 
 class DetailsFragment : Fragment() {
 
@@ -34,7 +37,10 @@ class DetailsFragment : Fragment() {
 
         val film = arguments?.get(FILM_ARGUMENT_ID) as Film
         details_toolbar.title = film.title
-        details_poster.setImageResource(film.poster)
+        Glide.with(this)
+            .load(ApiConstants.IMAGES_URL + "w780" + film.poster)
+            .centerCrop()
+            .into(details_poster)
         details_description.text = film.description
 
         details_fab_favorites.setImageResource(

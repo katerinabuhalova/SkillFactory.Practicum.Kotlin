@@ -20,12 +20,6 @@ class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
 
-    val filmsDataBase = listOf(
-        Film("Joker", R.drawable.joker, "Film1"),
-        Film("Titanic", R.drawable.titanic, "Film2"),
-        Film("Christmas Story", R.drawable.christmasstory, "Film3")
-    )
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +47,6 @@ class FavoritesFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(recyclerViewPadding)
             addItemDecoration(decorator)
         }
-        filmsAdapter.addItems(filmsDataBase)
+      //  filmsAdapter.addItems(filmsDataBase)
     }
 }
