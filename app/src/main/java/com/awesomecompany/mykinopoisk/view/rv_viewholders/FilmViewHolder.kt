@@ -2,6 +2,7 @@ package com.awesomecompany.mykinopoisk.view.rv_viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.awesomecompany.mykinopoisk.data.ApiConstants
 import com.awesomecompany.mykinopoisk.domain.Film
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.film_item.view.*
@@ -16,7 +17,7 @@ class FilmViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemV
     fun bind(film: Film) {
         title.text = film.title
         Glide.with(itemView)
-            .load(film.poster)
+            .load(ApiConstants.IMAGES_URL + "w342" + film.poster)
             .centerCrop()
             .into(poster)
         description.text = film.description
