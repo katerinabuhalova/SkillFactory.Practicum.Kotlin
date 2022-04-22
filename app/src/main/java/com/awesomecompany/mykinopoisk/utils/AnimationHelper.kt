@@ -12,7 +12,7 @@ import kotlin.math.roundToInt
 
 object AnimationHelper {
 
-    private const val menuItems = 4
+    private const val menuItems = 5
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun performFragmentCircularRevealAnimation(rootView: View, activity: Activity, position: Int) {

@@ -11,5 +11,11 @@
     <string name="AlertDialog_negativeButton">Нет</string>
     <string name="AlertDialog_neutralButton">Не знаю</string>
     <string name="AlertDialog_toast">Решайся</string>
+    <string name="menu_settings_title_text">Настройки</string>
+    <string name="radio_button_popular">Популярные</string>
+    <string name="radio_button_top_rated">Топ</string>
+    <string name="radio_button_upcoming">Скоро</string>
+    <string name="radio_button_playing">В кинотеатрах</string>
+    <string name="radio_group_header">Подборка на главном экране:</string>
 
 </resources>
