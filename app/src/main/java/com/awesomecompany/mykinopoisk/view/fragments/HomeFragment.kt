@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
 import com.awesomecompany.mykinopoisk.view.MainActivity
 import com.awesomecompany.mykinopoisk.R
+import com.awesomecompany.mykinopoisk.databinding.FragmentHomeBinding
 import com.awesomecompany.mykinopoisk.view.rv_adapters.TopSpacingItemDecoration
 import com.awesomecompany.mykinopoisk.domain.Film
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
@@ -22,6 +24,7 @@ import java.util.*
 
 
 class HomeFragment : Fragment() {
+    private lateinit var binding : FragmentHomeBinding
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
@@ -42,8 +45,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -60,9 +63,18 @@ class HomeFragment : Fragment() {
 
         viewModel.filmsListLiveData.observe(
             viewLifecycleOwner,
-            { filmsDataBase = it })
+            {
+                filmsDataBase = it
+                filmsAdapter.addItems(it)
+            })
 
-
+        fun initPullToRefresh() {
+            binding.pullToRefresh.setOnRefreshListener {
+                filmsAdapter.items.clear()
+                viewModel.getFilms()
+                binding.pullToRefresh.isRefreshing = false
+            }
+        }
 
         search_view.setOnClickListener {
             search_view.isIconified = false
