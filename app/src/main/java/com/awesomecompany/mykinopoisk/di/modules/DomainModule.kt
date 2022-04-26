@@ -1,6 +1,7 @@
 package com.awesomecompany.mykinopoisk.di.modules
 
 import android.content.Context
+import com.awesomecompany.mykinopoisk.data.MainRepository
 import com.awesomecompany.mykinopoisk.data.PreferenceProvider
 import com.awesomecompany.mykinopoisk.data.TmdbApi
 import com.awesomecompany.mykinopoisk.domain.Interactor
@@ -19,6 +20,5 @@ class DomainModule(val context: Context) {
 
     @Singleton
     @Provides
-    fun provideInteractor(tmdbApi: TmdbApi, preferenceProvider: PreferenceProvider) =
-        Interactor(retrofitService = tmdbApi, preferences = preferenceProvider)
+    fun provideInteractor(tmdbApi: TmdbApi, preferenceProvider: PreferenceProvider, repository: MainRepository) = Interactor(retrofitService = tmdbApi, preferences = preferenceProvider, repo = repository)
 }
