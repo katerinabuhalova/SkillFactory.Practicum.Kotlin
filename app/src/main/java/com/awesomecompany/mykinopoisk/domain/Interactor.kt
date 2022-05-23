@@ -1,6 +1,7 @@
 package com.awesomecompany.mykinopoisk.domain
 
 import com.awesomecompany.mykinopoisk.data.ApiKey
+import com.awesomecompany.mykinopoisk.data.MainRepository
 import com.awesomecompany.mykinopoisk.data.PreferenceProvider
 import com.awesomecompany.mykinopoisk.data.TmdbApi
 import com.awesomecompany.mykinopoisk.data.entity.TmdbResultsDto
@@ -13,7 +14,8 @@ import retrofit2.Response
 
 class Interactor(
     private val retrofitService: TmdbApi,
-    private val preferences: PreferenceProvider
+    private val preferences: PreferenceProvider,
+    private val repo: MainRepository
 ) {
     fun getFilmsFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), ApiKey.KEY, "ru-RU", page)
@@ -23,7 +25,11 @@ class Interactor(
                     call: Call<TmdbResultsDto>,
                     response: Response<TmdbResultsDto>
                 ) {
-                    callback.onSuccess(Converter.convertApiListToDtoList(response.body()?.tmdbFilms))
+                    val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
+                    list.forEach {
+                        repo.putToDb(film = it)
+                    }
+                    callback.onSuccess(list)
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
@@ -31,6 +37,8 @@ class Interactor(
                 }
             })
     }
+
+    fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
 
     fun saveDefaultCategoryToPreferences(category: String) {
         preferences.saveDefaultCategory(category)
