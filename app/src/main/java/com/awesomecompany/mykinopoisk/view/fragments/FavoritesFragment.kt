@@ -12,7 +12,7 @@ import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
 import com.awesomecompany.mykinopoisk.view.MainActivity
 import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.view.rv_adapters.TopSpacingItemDecoration
-import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
 import kotlinx.android.synthetic.main.fragment_favorites.*
 

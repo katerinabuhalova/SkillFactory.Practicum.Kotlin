@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.R
-import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 

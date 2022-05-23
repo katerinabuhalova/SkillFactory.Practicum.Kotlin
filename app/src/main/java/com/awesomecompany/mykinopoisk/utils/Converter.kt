@@ -1,7 +1,7 @@
 package com.awesomecompany.mykinopoisk.utils
 
 import com.awesomecompany.mykinopoisk.data.entity.TmdbFilm
-import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.data.entity.Film
 
 object Converter {
     fun convertApiListToDtoList(list: List<TmdbFilm>?): List<Film> {
