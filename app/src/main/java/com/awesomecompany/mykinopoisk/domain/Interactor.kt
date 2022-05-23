@@ -4,6 +4,7 @@ import com.awesomecompany.mykinopoisk.data.ApiKey
 import com.awesomecompany.mykinopoisk.data.MainRepository
 import com.awesomecompany.mykinopoisk.data.PreferenceProvider
 import com.awesomecompany.mykinopoisk.data.TmdbApi
+import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.data.entity.TmdbResultsDto
 import com.awesomecompany.mykinopoisk.utils.Converter
 import com.awesomecompany.mykinopoisk.viewmodel.HomeFragmentViewModel
@@ -27,7 +28,7 @@ class Interactor(
                 ) {
                     val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
                     list.forEach {
-                        repo.putToDb(film = it)
+                        repo.putToDb(list)
                     }
                     callback.onSuccess(list)
                 }

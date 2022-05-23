@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
@@ -13,10 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
 import com.awesomecompany.mykinopoisk.view.MainActivity
-import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.databinding.FragmentHomeBinding
 import com.awesomecompany.mykinopoisk.view.rv_adapters.TopSpacingItemDecoration
-import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
 import com.awesomecompany.mykinopoisk.viewmodel.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_home.*

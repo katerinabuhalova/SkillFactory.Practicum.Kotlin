@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.data.ApiConstants
-import com.awesomecompany.mykinopoisk.domain.Film
+import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_details.*
