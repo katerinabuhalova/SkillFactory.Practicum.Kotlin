@@ -1,5 +1,6 @@
 package com.awesomecompany.mykinopoisk.domain
 
+import androidx.lifecycle.LiveData
 import com.awesomecompany.mykinopoisk.data.ApiKey
 import com.awesomecompany.mykinopoisk.data.MainRepository
 import com.awesomecompany.mykinopoisk.data.PreferenceProvider
@@ -30,7 +31,7 @@ class Interactor(
                     list.forEach {
                         repo.putToDb(list)
                     }
-                    callback.onSuccess(list)
+                    callback.onSuccess()
                 }
 
                 override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
@@ -39,7 +40,7 @@ class Interactor(
             })
     }
 
-    fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
+    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDB()
 
     fun saveDefaultCategoryToPreferences(category: String) {
         preferences.saveDefaultCategory(category)
