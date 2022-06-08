@@ -3,9 +3,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/details_root"
     android:fitsSystemWindows="true"
     tools:context=".view.fragments.DetailsFragment">
 
@@ -84,6 +84,28 @@
         app:srcCompat="@drawable/ic_favorits"
         app:tint="@android:color/white"
         tools:ignore="VectorDrawableCompat" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_fab_download_wp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fragmentDetails_ActionButton_layoutMargin"
+        android:backgroundTint="@color/purple_500"
+        android:translationX="@dimen/fragmentDetails_ActionButton_translationz"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="left|bottom"
+        app:srcCompat="@drawable/anim_vector"
+        app:tint="@android:color/white" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="@dimen/fragmentDetails_progressBar_width"
+        android:layout_height="@dimen/fragmentDetail_progressbar_heigth"
+        android:translationZ="@dimen/fragmentDetails_progressbar_translationz"
+        android:visibility="invisible"
+        app:layout_anchor="@id/details_fab_download_wp"
+        app:layout_anchorGravity="center" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
