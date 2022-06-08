@@ -33,8 +33,6 @@ class FavoritesFragment : Fragment() {
 
         AnimationHelper.performFragmentCircularRevealAnimation(favorites_root, requireActivity(), 1)
 
-        val favoritesList: List<Film> = emptyList()
-
         favorites_recycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
@@ -47,6 +45,5 @@ class FavoritesFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(recyclerViewPadding)
             addItemDecoration(decorator)
         }
-      //  filmsAdapter.addItems(filmsDataBase)
     }
 }
