@@ -159,7 +159,6 @@ class DetailsFragment : Fragment() {
         }
         MainScope().launch {
             binding.progressBar.isVisible = true
-            //Создаем через async, так как нам нужен результат от работы, то есть Bitmap
             val job = scope.async {
                 viewModel.loadWallpaper(ApiConstants.IMAGES_URL + "original" + film.poster)
             }

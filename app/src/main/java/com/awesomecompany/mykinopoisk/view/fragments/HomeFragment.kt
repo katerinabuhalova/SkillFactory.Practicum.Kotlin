@@ -19,6 +19,8 @@ import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
 import com.awesomecompany.mykinopoisk.viewmodel.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import java.util.*
 
 
@@ -31,7 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val recyclerViewPadding = 8
     private val startAnimationPosition = 1
-
+    private lateinit var scope: CoroutineScope
     private var filmsDataBase = listOf<Film>()
         set(value) {
             if (field == value) return
@@ -57,51 +59,66 @@ class HomeFragment : Fragment() {
             startAnimationPosition
         )
 
+        initSearchView()
+        initPullToRefresh()
         initializeRecycler()
 
-        viewModel.filmsListLiveData.observe(
-            viewLifecycleOwner,
-            {
-                filmsDataBase = it
-                filmsAdapter.addItems(it)
-            })
-
-
-
-        fun initPullToRefresh() {
-            binding.pullToRefresh.setOnRefreshListener {
-                filmsAdapter.items.clear()
-                viewModel.getFilms()
-                binding.pullToRefresh.isRefreshing = false
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                viewModel.filmsListData.collect {
+                    withContext(Dispatchers.Main) {
+                        filmsAdapter.addItems(it)
+                        filmsDataBase = it
+                    }
+                }
+            }
+            scope.launch {
+                for (element in viewModel.showProgressBar) {
+                    launch(Dispatchers.Main) {
+                        binding.progressBar.isVisible = element
+                    }
+                }
             }
         }
+    }
 
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
+    }
+
+    fun initPullToRefresh() {
+        binding.pullToRefresh.setOnRefreshListener {
+            filmsAdapter.items.clear()
+            viewModel.getFilms()
+            binding.pullToRefresh.isRefreshing = false
+        }
+    }
+
+    private fun initSearchView() {
         search_view.setOnClickListener {
             search_view.isIconified = false
         }
 
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isBlank()) {
-                    filmsAdapter.addItems(filmsDataBase)
+        search_view.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
                     return true
                 }
-                val result = filmsDataBase.filter {
-                    it.title.toLowerCase(Locale.getDefault())
-                        .contains(newText.toLowerCase(Locale.getDefault()))
-                }
-                filmsAdapter.addItems(result)
-                return true
-            }
-        })
 
-        viewModel.showProgressBar.observe(viewLifecycleOwner, {
-            binding.progressBar.isVisible = it
-        })
+                override fun onQueryTextChange(newText: String): Boolean {
+                    if (newText.isBlank()) {
+                        filmsAdapter.addItems(filmsDataBase)
+                        return true
+                    }
+                    val result = filmsDataBase.filter {
+                        it.title.toLowerCase(Locale.getDefault())
+                            .contains(newText.toLowerCase(Locale.getDefault()))
+                    }
+                    filmsAdapter.addItems(result)
+                    return true
+                }
+            })
     }
 
     private fun initializeRecycler() {
