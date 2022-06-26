@@ -1,9 +1,8 @@
 package com.awesomecompany.mykinopoisk.data
 
-import androidx.lifecycle.LiveData
 import com.awesomecompany.mykinopoisk.data.DAO.FilmDao
 import com.awesomecompany.mykinopoisk.data.entity.Film
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.Executors
 
 class MainRepository(private val filmDao: FilmDao) {
@@ -15,5 +14,5 @@ class MainRepository(private val filmDao: FilmDao) {
         }
     }
 
-    fun getAllFromDB(): Flow<List<Film>> = filmDao.getCachedFilms()
+    fun getAllFromDB(): Observable<List<Film>> = filmDao.getCachedFilms()
 }
