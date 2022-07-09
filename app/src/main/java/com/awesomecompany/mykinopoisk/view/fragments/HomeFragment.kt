@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
 import com.awesomecompany.mykinopoisk.view.MainActivity
 import com.awesomecompany.mykinopoisk.databinding.FragmentHomeBinding
@@ -122,7 +123,6 @@ class HomeFragment : Fragment() {
             }
             .debounce(800, java.util.concurrent.TimeUnit.MILLISECONDS)
             .filter {
-                //Если в поиске пустое поле, возвращаем список фильмов по умолчанию
                 viewModel.getFilms()
                 it.isNotBlank()
             }
@@ -133,7 +133,7 @@ class HomeFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onError = {
-                    Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.HomeFragment_onError), Toast.LENGTH_SHORT).show()
                 },
                 onNext = {
                     filmsAdapter.addItems(it)
