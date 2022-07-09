@@ -47,6 +47,11 @@ class Interactor(
             })
     }
 
+    fun getSearchResultFromApi(search: String): Observable<List<Film>> = retrofitService.getFilmFromSearch(ApiKey.KEY, "ru-RU", search, 1)
+        .map {
+            Converter.convertApiListToDtoList(it.tmdbFilms)
+        }
+
     fun getFilmsFromDB(): Observable<List<Film>> = repo.getAllFromDB()
 
     fun saveDefaultCategoryToPreferences(category: String) {
@@ -54,4 +59,6 @@ class Interactor(
     }
 
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
+
+
 }
