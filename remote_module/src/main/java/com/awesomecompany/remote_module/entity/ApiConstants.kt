@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk.data
+package com.awesomecompany.remote_module.entity
 
 object ApiConstants {
     const val BASE_URL = "https://api.themoviedb.org/"

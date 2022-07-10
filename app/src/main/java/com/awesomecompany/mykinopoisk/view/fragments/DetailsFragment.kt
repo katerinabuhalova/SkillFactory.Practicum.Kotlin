@@ -18,7 +18,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.awesomecompany.mykinopoisk.R
-import com.awesomecompany.mykinopoisk.data.ApiConstants
+import com.awesomecompany.remote_module.entity.ApiConstants
 import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.databinding.FragmentDetailsBinding
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
@@ -58,7 +58,7 @@ class DetailsFragment : Fragment() {
         film = arguments?.get(FILM_ARGUMENT_ID) as Film
         details_toolbar.title = film.title
         Glide.with(this)
-            .load(ApiConstants.IMAGES_URL + "w780" + film.poster)
+            .load(com.awesomecompany.remote_module.entity.ApiConstants.IMAGES_URL + "w780" + film.poster)
             .centerCrop()
             .into(details_poster)
         details_description.text = film.description
@@ -160,7 +160,7 @@ class DetailsFragment : Fragment() {
         MainScope().launch {
             binding.progressBar.isVisible = true
             val job = scope.async {
-                viewModel.loadWallpaper(ApiConstants.IMAGES_URL + "original" + film.poster)
+                viewModel.loadWallpaper(com.awesomecompany.remote_module.entity.ApiConstants.IMAGES_URL + "original" + film.poster)
             }
             saveToGallery(job.await())
             Snackbar.make(

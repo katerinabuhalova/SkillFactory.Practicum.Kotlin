@@ -1,6 +1,6 @@
-package com.awesomecompany.mykinopoisk.data
+package com.awesomecompany.remote_module
 
-import com.awesomecompany.mykinopoisk.data.entity.TmdbResultsDto
+import com.awesomecompany.remote_module.entity.TmdbResultsDto
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,7 +14,7 @@ interface TmdbApi {
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: Int
-    ): Call<TmdbResultsDto>
+    ): Observable<TmdbResultsDto>
 
     @GET("3/search/movie")
     fun getFilmFromSearch(
@@ -22,5 +22,5 @@ interface TmdbApi {
         @Query("language") language: String,
         @Query("query") query: String,
         @Query("page") page: Int
-    ): Observable<TmdbResultsDto>
+    ): Observable<com.awesomecompany.remote_module.entity.TmdbResultsDto>
 }
