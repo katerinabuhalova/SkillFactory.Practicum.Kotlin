@@ -1,4 +1,5 @@
-package com.awesomecompany.mykinopoisk.data.entity
+package com.awesomecompany.remote_module.entity
+
 
 import com.google.gson.annotations.SerializedName
 

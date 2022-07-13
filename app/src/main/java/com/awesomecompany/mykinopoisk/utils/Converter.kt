@@ -1,6 +1,6 @@
 package com.awesomecompany.mykinopoisk.utils
 
-import com.awesomecompany.mykinopoisk.data.entity.TmdbFilm
+import com.awesomecompany.remote_module.entity.TmdbFilm
 import com.awesomecompany.mykinopoisk.data.entity.Film
 
 object Converter {

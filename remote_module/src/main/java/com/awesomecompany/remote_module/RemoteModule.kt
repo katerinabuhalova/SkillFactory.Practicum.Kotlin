@@ -1,8 +1,5 @@
-package com.awesomecompany.mykinopoisk.di.modules
+package com.awesomecompany.remote_module
 
-import com.awesomecompany.mykinopoisk.BuildConfig
-import com.awesomecompany.mykinopoisk.data.ApiConstants
-import com.awesomecompany.mykinopoisk.data.TmdbApi
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -30,7 +27,7 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(ApiConstants.BASE_URL)
+        .baseUrl(com.awesomecompany.remote_module.entity.ApiConstants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .client(okHttpClient)

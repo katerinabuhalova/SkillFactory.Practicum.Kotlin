@@ -2,7 +2,7 @@ package com.awesomecompany.mykinopoisk.di
 
 import com.awesomecompany.mykinopoisk.di.modules.DatabaseModule
 import com.awesomecompany.mykinopoisk.di.modules.DomainModule
-import com.awesomecompany.mykinopoisk.di.modules.RemoteModule
+import com.awesomecompany.remote_module.RemoteProvider
 import com.awesomecompany.mykinopoisk.viewmodel.SettingsFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -10,8 +10,8 @@ import com.awesomecompany.mykinopoisk.viewmodel.HomeFragmentViewModel as HomeFra
 
 @Singleton
 @Component(
+    dependencies = [RemoteProvider::class],
     modules = [
-        RemoteModule::class,
         DatabaseModule::class,
         DomainModule::class
     ]
