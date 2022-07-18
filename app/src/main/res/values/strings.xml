@@ -21,5 +21,7 @@
     <string name="downloaded_to_gallery">"Сохранено в галерею"</string>
     <string name="open">В галерею</string>
     <string name="HomeFragment_onError">Что-то пошло не так</string>
+    <string name="ConnectionCheker_Battery_low">Батарея разряжена</string>
+    <string name="ConnectionChecker_Power_Connected">Зарядка подключена</string>
 
 </resources>
