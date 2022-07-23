@@ -14,16 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyKinopoisk">
+        <receiver
+            android:name=".view.fragments.ConnectionChecker"
+            android:enabled="true"
+            android:exported="true"></receiver>
 
         <activity android:name=".view.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.MainActivity"
-            android:theme="@style/Theme.MyKinopoisk.TextSize"></activity>
+            android:theme="@style/Theme.MyKinopoisk.TextSize" />
     </application>
 
 </manifest>

@@ -1,5 +1,8 @@
 package com.awesomecompany.mykinopoisk.view
 
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -7,15 +10,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.data.entity.Film
+import com.awesomecompany.mykinopoisk.databinding.ActivityMainBinding
 import com.awesomecompany.mykinopoisk.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var receiver: BroadcastReceiver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         appBarClickListener()
         bottomListener()
@@ -23,6 +32,18 @@ class MainActivity : AppCompatActivity() {
         val tag = "home"
         val fragment = checkFragmentExistence(tag)
         changeFragment(fragment ?: HomeFragment(), tag)
+
+        receiver = ConnectionChecker()
+        val filters = IntentFilter().apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_BATTERY_LOW)
+        }
+        registerReceiver(receiver, filters)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     private fun appBarClickListener() {
@@ -78,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.settings -> {
                     val tag = "settings"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: SettingsFragment(), tag)
+                    changeFragment(fragment ?: SettingsFragment(), tag)
                     true
                 }
                 else -> false
