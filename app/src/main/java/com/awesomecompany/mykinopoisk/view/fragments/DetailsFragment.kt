@@ -22,6 +22,7 @@ import com.awesomecompany.remote_module.entity.ApiConstants
 import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.databinding.FragmentDetailsBinding
 import com.awesomecompany.mykinopoisk.utils.AnimationHelper
+import com.awesomecompany.mykinopoisk.view.notification.NotificationHelper
 import com.awesomecompany.mykinopoisk.viewmodel.DetailsFragmentViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -91,6 +92,10 @@ class DetailsFragment : Fragment() {
 
         binding.detailsFabDownloadWp.setOnClickListener {
             performAsyncLoadOfPoster()
+        }
+
+        binding.detailsFabWatchLater.setOnClickListener {
+            NotificationHelper.createNotification(requireContext(), film)
         }
 
     }
