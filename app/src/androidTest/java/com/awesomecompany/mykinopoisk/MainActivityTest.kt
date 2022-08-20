@@ -8,7 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.awesomecompany.mykinopoisk.view.rv_viewholders.FilmViewHolder
-import com.awesomecompany.mykinopoisk.view.MainActivity
+import com.amsdevelops.mykinopoisk.view.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

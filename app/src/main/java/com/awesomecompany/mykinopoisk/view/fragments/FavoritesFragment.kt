@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awesomecompany.mykinopoisk.view.rv_adapters.FilmListRecyclerAdapter
-import com.awesomecompany.mykinopoisk.view.MainActivity
+import com.amsdevelops.mykinopoisk.view.MainActivity
 import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.view.rv_adapters.TopSpacingItemDecoration
 import com.awesomecompany.mykinopoisk.data.entity.Film

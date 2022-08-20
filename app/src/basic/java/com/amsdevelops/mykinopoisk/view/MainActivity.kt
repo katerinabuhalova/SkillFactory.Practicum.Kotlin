@@ -1,4 +1,4 @@
-package com.awesomecompany.mykinopoisk.view
+package com.amsdevelops.mykinopoisk.view
 
 import android.content.BroadcastReceiver
 import android.content.Intent
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         appBarClickListener()
-        bottomListener()
+        initNavigation()
 
         val tag = "home"
         val fragment = checkFragmentExistence(tag)
@@ -68,38 +68,33 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    private fun bottomListener() {
-        bottom_navigation.setOnNavigationItemSelectedListener {
-
+    private fun initNavigation() {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment(fragment ?: HomeFragment(), tag)
+                    changeFragment( fragment?: HomeFragment(), tag)
                     true
                 }
                 R.id.favorites -> {
-                    val tag = "favorites"
-                    val fragment = checkFragmentExistence(tag)
-                    changeFragment(fragment ?: FavoritesFragment(), tag)
+                    Toast.makeText(this, getString(R.string.MainActivity_favorites), Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.watch_later -> {
                     val tag = "watch_later"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment(fragment ?: WatchLaterFragment(), tag)
+                    changeFragment( fragment?: WatchLaterFragment(), tag)
                     true
                 }
                 R.id.selections -> {
-                    val tag = "selections"
-                    val fragment = checkFragmentExistence(tag)
-                    changeFragment(fragment ?: SelectionsFragment(), tag)
+                    Toast.makeText(this, getString(R.string.MainActivity_selections), Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.settings -> {
                     val tag = "settings"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment(fragment ?: SettingsFragment(), tag)
+                    changeFragment( fragment?: SettingsFragment(), tag)
                     true
                 }
                 else -> false

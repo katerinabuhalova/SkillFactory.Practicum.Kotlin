@@ -5,6 +5,7 @@ import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.amsdevelops.mykinopoisk.view.MainActivity
 import com.awesomecompany.mykinopoisk.R
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
