@@ -26,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".receivers.ReminderBroadcast" />
         <activity
             android:name=".view.MainActivity"
             android:theme="@style/Theme.MyKinopoisk.TextSize" />

@@ -98,6 +98,11 @@ class DetailsFragment : Fragment() {
             NotificationHelper.createNotification(requireContext(), film)
         }
 
+        binding.detailsFabWatchLater.setOnClickListener {
+            NotificationHelper.notificationSet(requireContext(), film)
+        }
+
+
     }
 
     private fun checkPermission(): Boolean {
