@@ -29,7 +29,7 @@
 
         <receiver android:name=".receivers.ReminderBroadcast" />
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.amsdevelops.mykinopoisk.view.MainActivity"
             android:theme="@style/Theme.MyKinopoisk.TextSize" />
     </application>
 

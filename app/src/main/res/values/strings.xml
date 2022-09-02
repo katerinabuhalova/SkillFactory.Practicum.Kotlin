@@ -23,5 +23,7 @@
     <string name="HomeFragment_onError">Что-то пошло не так</string>
     <string name="ConnectionCheker_Battery_low">Батарея разряжена</string>
     <string name="ConnectionChecker_Power_Connected">Зарядка подключена</string>
+    <string name="MainActivity_favorites">Доступно в Pro версии</string>
+    <string name="MainActivity_selections">Доступно в Pro версии</string>
 
 </resources>

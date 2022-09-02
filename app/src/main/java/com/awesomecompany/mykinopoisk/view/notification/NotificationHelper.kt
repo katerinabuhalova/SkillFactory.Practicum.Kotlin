@@ -14,7 +14,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.receivers.ReminderBroadcast
-import com.awesomecompany.mykinopoisk.view.MainActivity
+import com.amsdevelops.mykinopoisk.view.MainActivity
 import com.awesomecompany.remote_module.entity.ApiConstants
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
