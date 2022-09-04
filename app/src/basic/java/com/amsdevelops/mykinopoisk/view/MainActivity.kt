@@ -4,14 +4,18 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.awesomecompany.mykinopoisk.App
 import com.awesomecompany.mykinopoisk.R
 import com.awesomecompany.mykinopoisk.data.entity.Film
 import com.awesomecompany.mykinopoisk.databinding.ActivityMainBinding
 import com.awesomecompany.mykinopoisk.view.fragments.*
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -39,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             addAction(Intent.ACTION_BATTERY_LOW)
         }
         registerReceiver(receiver, filters)
+
+        showPromo()
     }
 
     override fun onDestroy() {
@@ -134,4 +140,38 @@ class MainActivity : AppCompatActivity() {
             }
             .show()
     }
+
+   private fun showPromo(){
+       if (!App.instance.isPromoShown) {
+           val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+           val configSettings = FirebaseRemoteConfigSettings.Builder()
+               .setMinimumFetchIntervalInSeconds(0)
+               .build()
+           firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+           firebaseRemoteConfig.fetch()
+               .addOnCompleteListener {
+                   if (it.isSuccessful) {
+                       firebaseRemoteConfig.activate()
+                       val filmLink = firebaseRemoteConfig.getString("film_link")
+                       //Если поле не пустое
+                       if (filmLink.isNotBlank
+                               ()) {
+                           App.instance.isPromoShown = true
+                           binding.promoViewGroup.apply {
+                               //Делаем видимой
+                               visibility = View.VISIBLE
+                               animate()
+                                   .setDuration(1500)
+                                   .alpha(1f)
+                                   .start()
+                               setLinkForPoster(filmLink)
+                               watchButton.setOnClickListener {
+                                   visibility = View.GONE
+                               }
+                           }
+                       }
+                   }
+               }
+       }
+   }
 }

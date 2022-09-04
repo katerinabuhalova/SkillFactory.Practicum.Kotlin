@@ -25,5 +25,7 @@
     <string name="ConnectionChecker_Power_Connected">Зарядка подключена</string>
     <string name="MainActivity_favorites">Доступно в Pro версии</string>
     <string name="MainActivity_selections">Доступно в Pro версии</string>
+    <string name="promo_text">Смотреть</string>
+    <string name="promo_tittle">Посмотрите фильм:</string>
 
 </resources>
