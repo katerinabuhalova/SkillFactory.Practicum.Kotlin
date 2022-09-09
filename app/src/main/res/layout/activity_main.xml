@@ -42,4 +42,12 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
 
+    <com.awesomecompany.mykinopoisk.view.customviews.PromoView
+        android:id="@+id/promo_view_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:translationZ="10dp"
+        android:visibility="gone"></com.awesomecompany.mykinopoisk.view.customviews.PromoView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
